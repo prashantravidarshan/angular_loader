@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.min.js"></script>
+
+    <!-- loadingbar -->
+    <script src="src/loading-bar.js"></script>
+    <link href='src/loading-bar.css' rel='stylesheet' />
+
+    <!-- example app -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <link href='app.css' rel='stylesheet' />
+    <link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body ng-app="LoadingBarExample" ng-controller="ExampleCtrl">
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Animated Progress Bar</h2>
+        <p>The .active class animates the progress bar:</p> 
+        <div class="progress" id="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="examples" ng-hide="fakeIntro">
+      <!-- <h4>Examples:</h4> -->
+      <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-primary btn-lg" ng-click="start()">
+          <i class="glyphicon glyphicon-play-circle"></i> <span>cfpLoadingBar.</span>start()
+        </a>
+        <a href="#" class="btn btn-primary btn-lg" ng-click="complete()">
+          <i class="glyphicon glyphicon-play-circle"></i> <span>cfpLoadingBar.</span>complete()
+        </a>
+        <a href="#" class="btn btn-primary btn-lg" ng-click="fetch()"><i class="glyphicon glyphicon-play-circle"></i> Real Example <span> (from reddit)</span></a>
+      </div>
+    </div>
+
+    <h4 class="loading-text" ng-show="subreddit">Showing 100 results for: <span>/r/{{subreddit}}...</span></h4>
+    <div ng-repeat="post in posts" class="panel panel-default">
+      <div class="panel-body media">
+        <span class="badge pull-right">{{post.data.score}}</span>
+        <div class="pull-left" ng-if="post.data.thumbnail">
+          <img class="thumbnail" ng-src="{{post.data.thumbnail}}">
+        </div>
+        <div class="">
+          <div class="">
+            <a href="{{post.data.url}}">{{post.data.title}}</a>
+            <p class="meta">by {{post.data.author}}</p>
+            <p class="meta-comments">{{post.data.num_comments}} comments</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
